@@ -1,0 +1,55 @@
+﻿@model TechnicalTest.Models.HomeModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1 class="text-center mb-4">Technical test - drinks</h1>
+
+<div class="row">
+    @foreach (var drink in Model.drinkList)
+    {
+        @if (drink.Availability != true)
+        {
+        <div class="col-md-3">
+            <div class="card bg-dark text-white img-container">
+                <img class="card-img gray-image" src="@drink.ImageLink" alt="Card image">
+                <div class="card-img-overlay">
+                <h5 class="card-title text-overlay">@drink.Name</h5>
+                </div>
+            </div>
+        </div>
+        }
+
+        else 
+        {
+            
+        <div class="col-md-3">
+            <div class="card bg-dark text-white img-container" onclick="getInstructions(@drink.DrinkId)">
+                <img class="card-img" src="@drink.ImageLink" alt="Card image">
+                <div class="card-img-overlay">
+                <h5 class="card-title text-overlay">@drink.Name</h5>
+                </div>
+            </div>
+            
+        </div>
+        }
+
+    }
+   
+</div>
+
+<div id="instructions" style="margin-top: 20px"></div>
+
+
+<script>
+        function getInstructions(drinkId) {
+
+            $.post('@Html.Raw(@Url.Action("Instructions"))', {
+            "drinkId": drinkId
+                }).done(function (result) {
+                    $('#instructions').html(result);
+
+                });
+        }
+</script>
