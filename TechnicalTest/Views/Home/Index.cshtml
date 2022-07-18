@@ -7,22 +7,9 @@
 <h1 class="text-center mb-4">Technical test - drinks</h1>
 
 <div class="row">
-    @foreach (var drink in Model.drinkList)
+    @foreach (var drink in Model.availableDrinkList)
     {
-        @if (drink.Availability != true)
-        {
-        <div class="col-md-3">
-            <div class="card bg-dark text-white img-container">
-                <img class="card-img gray-image" src="@drink.ImageLink" alt="Card image">
-                <div class="card-img-overlay">
-                <h5 class="card-title text-overlay">@drink.Name</h5>
-                </div>
-            </div>
-        </div>
-        }
-
-        else 
-        {
+        
             
         <div class="col-md-3">
             <div class="card bg-dark text-white img-container" onclick="getInstructions(@drink.DrinkId)">
@@ -33,8 +20,20 @@
             </div>
             
         </div>
-        }
+        
 
+    }
+    @foreach (var drink in Model.unavailableDrinkList)
+    {
+
+        <div class="col-md-3">
+            <div class="card bg-dark text-white img-container">
+                <img class="card-img gray-image" src="@drink.ImageLink" alt="Card image">
+                <div class="card-img-overlay" style="cursor: initial">
+                <h5 class="card-title text-overlay">@drink.Name (Unavailable)</h5>
+                </div>
+            </div>
+        </div>
     }
    
 </div>

@@ -14,12 +14,21 @@ namespace TechnicalTest.SQL
     public class DataSQL
     {
 
-        public static List<Drinks> GetDrinks()
+        public static List<Drinks> GetAvailableDrinks()
         {
             using (TechnicalTestContext ctx = new TechnicalTestContext())
 
             {
-                return ctx.Drinks.OrderBy(c => c.Name).ToList();
+                return ctx.Drinks.Where(c => c.Availability == true).OrderBy(c => c.Name).ToList();
+            }
+
+        }
+        public static List<Drinks> GetUnAvailableDrinks()
+        {
+            using (TechnicalTestContext ctx = new TechnicalTestContext())
+
+            {
+                return ctx.Drinks.Where(c => c.Availability != true).OrderBy(c => c.Name).ToList();
             }
 
         }

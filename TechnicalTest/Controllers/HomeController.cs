@@ -18,7 +18,9 @@ namespace TechnicalTest.Controllers
         public IActionResult Index()
         {
             HomeModel model = new HomeModel();
-            model.drinkList = DataSQL.GetDrinks();
+            model.availableDrinkList = DataSQL.GetAvailableDrinks();
+            model.unavailableDrinkList = DataSQL.GetUnAvailableDrinks();
+
             return View(model);
         }
         [HttpPost]

@@ -5,7 +5,9 @@ namespace TechnicalTest.Models
 {
     public class HomeModel
     {
-        public List<Drinks> drinkList { get; set; }
+        public List<Drinks> availableDrinkList { get; set; }
+        public List<Drinks> unavailableDrinkList { get; set; }
+
 
         public List<Instructions> instructionList { get; set; }
     }
