@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TechnicalTest.SQL.Models;
 
 namespace TechnicalTest.Models
